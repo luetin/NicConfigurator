@@ -1,4 +1,7 @@
 import wmi
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 from Tkinter import *
 
 
@@ -16,6 +19,7 @@ def OptionMenuItemSelected(selectedItem):
 
 def GetNicInfo(nicDesc):
     # Hämtar info om valt nätverkskort
+    logging.debug('Getting info from selected adapter')
     nicIndexFound = False
 
     for nic in nic_configs:
@@ -26,6 +30,7 @@ def GetNicInfo(nicDesc):
     if not nicIndexFound: 
         print "Index: N/A"
     #print ip
+    
     print userEntryIPfirstOctet.get()
 
    
@@ -94,4 +99,12 @@ gateway = u'192.168.0.1'
 #nic.SetGateways(DefaultIPGateway=[gateway])
 
 
-root.mainloop()
+
+
+def main():
+    logger.info('Starting main')
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    main()
